@@ -1,0 +1,322 @@
+/* ─── RESET / ROOT ─────────────────────────────────────────── */
+.game-root {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  background: #0d0d1a;
+  color: #eeeeff;
+  font-family: sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── EVENT BANNER ─────────────────────────────────────────── */
+.event-banner {
+  position: absolute;
+  top: 130px;
+  left: 12px;
+  right: 12px;
+  z-index: 999;
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+.event-surge { background: #0d3320; border: 2px solid #00e676; }
+.event-crash { background: #3a0000; border: 2px solid #ff1744; }
+.event-emoji { font-size: 26px; }
+.event-msg   { font-size: 14px; font-weight: 700; text-align: center; line-height: 1.4; color: #fff; }
+
+.event-enter { animation: eventSlideIn 0.35s ease forwards; }
+.event-exit  { animation: eventFadeOut 0.5s ease forwards; }
+
+@keyframes eventSlideIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  20%  { transform: translateX(8px); }
+  40%  { transform: translateX(-8px); }
+  60%  { transform: translateX(5px); }
+  80%  { transform: translateX(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes eventFadeOut {
+  to { opacity: 0; transform: translateY(-12px); }
+}
+
+/* ─── OVERLAYS / MODALS ────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+}
+
+.popup-box {
+  background: #13132a;
+  border-radius: 20px;
+  padding: 24px 20px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid #2a2a55;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
+}
+
+.popup-title { font-size: 21px; font-weight: 800; }
+.popup-body  { font-size: 14px; color: #9999bb; text-align: center; line-height: 1.5; }
+
+/* Milestone box */
+.ms-box   { border-color: #ffd700 !important; box-shadow: 0 0 30px rgba(255,215,0,0.25); }
+.ms-emoji { font-size: 64px; }
+.ms-title { font-size: 22px; font-weight: 800; color: #ffd700; }
+.ms-amt   { font-size: 19px; font-weight: 700; color: #fff; }
+.ms-sub   { font-size: 14px; color: #777799; margin-bottom: 8px; }
+
+.pop-in { animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+@keyframes popIn {
+  from { transform: scale(0.25); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+/* Trade box */
+.trade-box   { gap: 10px; }
+.trade-title { font-size: 19px; font-weight: 800; }
+.trade-price { font-size: 18px; font-weight: 700; color: #ffd700; }
+.trade-sub   { font-size: 12px; color: #666688; }
+.trade-cost  { font-size: 14px; color: #ccccee; }
+
+.qty-row { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.qty-btn {
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid #2a2a55;
+  background: #1a1a35;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.qty-btn:active { transform: scale(0.94); }
+
+.trade-action-row { display: flex; gap: 10px; width: 100%; }
+.trade-btn {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+  cursor: pointer;
+}
+.trade-btn:active { transform: scale(0.96); }
+.buy-btn  { background: #cc1111; }
+.sell-btn { background: #1155cc; }
+
+/* Generic buttons */
+.btn {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+}
+.btn:active  { transform: scale(0.96); }
+.btn-blue   { background: #3333dd; }
+.btn-green  { background: #1a6b2a; }
+.btn-yellow { background: #8b6914; }
+.btn-purple { background: #5a0dad; }
+.btn-navy   { background: #1a3a6b; }
+.btn-gray   { background: #2a2a3a; }
+
+/* ─── HEADER ───────────────────────────────────────────────── */
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #13132a;
+  border-bottom: 1px solid #1e1e3a;
+  flex-shrink: 0;
+}
+.h-left    { display: flex; align-items: center; gap: 10px; }
+.h-right   { display: flex; align-items: center; gap: 6px; }
+.h-avatar  { font-size: 34px; }
+.h-pet, .h-car { font-size: 24px; }
+.h-day    { font-size: 12px; color: #9999bb; }
+.h-salary { font-size: 14px; font-weight: 700; color: #ffd700; }
+.h-revival{ font-size: 11px; font-weight: 700; color: #ff8888; margin-left: 4px; }
+
+/* ─── ASSET CARD ───────────────────────────────────────────── */
+.asset-card {
+  margin: 10px 10px 4px;
+  padding: 14px 16px;
+  background: #13132a;
+  border-radius: 16px;
+  border: 1px solid #1e1e3a;
+  flex-shrink: 0;
+}
+.a-label       { font-size: 12px; color: #555577; margin-bottom: 2px; }
+.a-total       { font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+.a-row         { display: flex; gap: 20px; }
+.a-item-label  { font-size: 11px; color: #555577; }
+.a-item-value  { font-size: 13px; font-weight: 600; color: #ccccdd; }
+.house-tag     { font-size: 12px; color: #ffd700; font-style: italic; margin-top: 8px; }
+.red { color: #ff4444 !important; }
+
+/* ─── TABS ─────────────────────────────────────────────────── */
+.tab-bar {
+  display: flex;
+  gap: 4px;
+  padding: 6px 8px;
+  background: #13132a;
+  flex-shrink: 0;
+}
+.tab-btn {
+  flex: 1;
+  padding: 8px 4px;
+  border: none;
+  border-radius: 10px;
+  background: #1a1a30;
+  color: #555577;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tab-btn:active { transform: scale(0.96); }
+.tab-btn-active { background: #2a2a55; color: #aaaaff; }
+
+/* ─── SCROLL AREA ──────────────────────────────────────────── */
+.scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 10px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ─── STOCK CARDS ──────────────────────────────────────────── */
+.stock-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #13132a;
+  border-radius: 14px;
+  border-left: 4px solid transparent;
+  padding: 13px 14px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.stock-card:active { transform: scale(0.98); background: #1a1a35; }
+
+.s-left  { display: flex; align-items: center; gap: 10px; }
+.s-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.s-emoji { font-size: 28px; }
+.s-name  { font-size: 15px; font-weight: 700; color: #eeeeff; }
+.s-owned { font-size: 12px; color: #444466; }
+.s-price { font-size: 16px; font-weight: 700; color: #fff; }
+.s-chg   { font-size: 13px; font-weight: 700; }
+.chg-up  { color: #ff5555; }
+.chg-dn  { color: #5599ff; }
+.ev-badge{ font-size: 11px; color: #ffd700; font-weight: 800; }
+
+/* Price flash animations */
+@keyframes flashUp {
+  0%   { background: rgba(255, 85, 85, 0.25); transform: scale(1.03); }
+  100% { background: transparent;             transform: scale(1); }
+}
+@keyframes flashDown {
+  0%   { background: rgba(85, 153, 255, 0.25); transform: scale(0.97); }
+  100% { background: transparent;              transform: scale(1); }
+}
+.flash-up   { animation: flashUp   0.5s ease forwards; }
+.flash-down { animation: flashDown 0.5s ease forwards; }
+
+/* ─── EMPTY ────────────────────────────────────────────────── */
+.empty-card {
+  background: #13132a;
+  border-radius: 14px;
+  padding: 40px;
+  text-align: center;
+  margin-top: 20px;
+}
+.empty-msg { color: #777799; font-size: 16px; margin-bottom: 8px; }
+.empty-sub { color: #444466; font-size: 13px; }
+
+/* ─── SHOP ─────────────────────────────────────────────────── */
+.shop-cat-label {
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffd700;
+  margin: 16px 0 6px;
+}
+.shop-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #13132a;
+  border-radius: 14px;
+  border: 1px solid #1e1e3a;
+  padding: 12px;
+  margin-bottom: 5px;
+}
+.shop-owned { background: #0d1f0d; border-color: #2a6b2a; }
+.shop-emoji { font-size: 30px; width: 40px; text-align: center; flex-shrink: 0; }
+.shop-info  { flex: 1; min-width: 0; }
+.shop-name  { font-size: 14px; font-weight: 700; color: #eeeeff; }
+.shop-desc  { font-size: 12px; color: #555577; margin-top: 2px; }
+.shop-maint { font-size: 11px; color: #ff8888; margin-top: 2px; }
+.shop-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+.shop-price { font-size: 12px; font-weight: 700; color: #ffd700; }
+.shop-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #3a3aff;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.shop-btn:active { transform: scale(0.94); }
+.shop-btn-off { background: #2a2a3a; color: #555; cursor: not-allowed; }
+.owned-badge { font-size: 13px; font-weight: 700; color: #44dd44; }
+
+/* ─── FOOTER ───────────────────────────────────────────────── */
+.game-footer {
+  padding: 10px 10px 14px;
+  background: #0d0d1a;
+  border-top: 1px solid #1e1e3a;
+  flex-shrink: 0;
+}
+.next-btn {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 16px;
+  background: #3333dd;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  box-shadow: 0 4px 20px rgba(51, 51, 221, 0.4);
+}
+.next-btn:active { transform: scale(0.97); }
+.next-btn-danger { background: #991111; box-shadow: 0 4px 20px rgba(153, 17, 17, 0.4); }
+.next-btn-label  { font-size: 17px; font-weight: 800; }
+.next-btn-sub    { font-size: 12px; color: #aaaaee; }
